@@ -1,0 +1,11 @@
+{
+  "core": {
+    "bind": {
+      "ip": [
+        "*"
+      ],
+      "port": 8910
+    },
+    "max_connections": 30
+  }
+}
