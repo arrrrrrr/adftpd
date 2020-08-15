@@ -2,12 +2,11 @@
 // Created by mikey on 9/08/2020.
 //
 
-#ifndef ADFTPD_READER_H
-#define ADFTPD_READER_H
+#ifndef ADFTPD_CONFIG_READER_H
+#define ADFTPD_CONFIG_READER_H
 
 #include <string>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/json_parser.hpp>
+#include "default_config.h"
 
 namespace config {
     using namespace boost::property_tree;
@@ -20,11 +19,13 @@ namespace config {
     public:
         reader(std::string file) : m_file(file) {}
         virtual bool parse() = 0;
+
         ptree& get_properties() {
             return m_props;
         }
+
         virtual ~reader() {}
     };
 }
 
-#endif //ADFTPD_READER_H
+#endif //ADFTPD_CONFIG_READER_H

@@ -2,8 +2,8 @@
 // Created by mikey on 9/08/2020.
 //
 
-#ifndef ADFTPD_MASTER_READER_H
-#define ADFTPD_MASTER_READER_H
+#ifndef ADFTPD_CONFIG_MASTER_READER_H
+#define ADFTPD_CONFIG_MASTER_READER_H
 
 #include "reader.h"
 
@@ -18,4 +18,4 @@ namespace config {
 }
 
 
-#endif //ADFTPD_MASTER_READER_H
+#endif //ADFTPD_CONFIG_MASTER_READER_H

@@ -12,7 +12,7 @@ find_package(absl REQUIRED)
 
 if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
-    add_executable(adftpd main.cpp config/reader.h config/master_reader.cpp config/master_reader.h config/slave_reader.cpp config/slave_reader.h)
+    add_executable(adftpd main.cpp config/reader.h config/master_reader.cpp config/master_reader.h config/slave_reader.cpp config/slave_reader.h config/default_config.h config/defs.h)
     target_link_libraries(adftpd ${Boost_LIBRARIES})
 endif()
 

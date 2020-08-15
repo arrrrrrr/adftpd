@@ -2,8 +2,8 @@
 // Created by mikey on 9/08/2020.
 //
 
-#ifndef ADFTPD_SLAVE_READER_H
-#define ADFTPD_SLAVE_READER_H
+#ifndef ADFTPD_CONFIG_SLAVE_READER_H
+#define ADFTPD_CONFIG_SLAVE_READER_H
 #include "reader.h"
 
 namespace config {
@@ -17,4 +17,4 @@ namespace config {
 }
 
 
-#endif //ADFTPD_SLAVE_READER_H
+#endif //ADFTPD_CONFIG_SLAVE_READER_H
