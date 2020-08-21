@@ -1,9 +1,7 @@
 //
 // Created by mikey on 15/08/2020.
 //
-
-#ifndef ADFTPD_CONFIG_DEFS_H
-#define ADFTPD_CONFIG_DEFS_H
+#include "default_config.h"
 
 /**
  * Static definitions for the config namespace
@@ -11,7 +9,7 @@
 namespace config::defaults {
     const char *master =
             u8R"(
-        {
+        {You ne
             "info": {
                 "name": "My adftpd server",
                 "welcome_msg": "Welcome",
@@ -64,4 +62,29 @@ namespace config::defaults {
         )";
 }
 
-#endif //ADFTPD_CONFIG_DEFS_H
+namespace config {
+    using namespace boost::property_tree;
+
+    default_config::default_config() {
+        make_props();
+    }
+
+    void default_config::make_props() {
+        json_parser::read_json(::config::defaults::master, m_master);
+        json_parser::read_json(::config::defaults::slave, m_slave);
+    }
+
+    default_config& default_config::get_instance() {
+        static default_config(instance);
+        return instance;
+    }
+
+    const ptree& default_config::master() {
+        return m_master;
+    }
+
+    const ptree& default_config::slave() {
+        return m_slave;
+    }
+}
+
