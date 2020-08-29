@@ -2,12 +2,9 @@
 // Created by mikey on 21/08/2020.
 //
 
-//
-// Created by mikey on 15/08/2020.
-//
+#pragma once
 
-#ifndef ADFTPD_CONFIG_DEFAULT_CONFIG_H
-#define ADFTPD_CONFIG_DEFAULT_CONFIG_H
+#include "constants.h"
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
@@ -15,22 +12,21 @@
 namespace config {
     using namespace boost::property_tree;
 
-    class default_config {
+    class DefaultConfig {
     private:
-        ptree m_master;
-        ptree m_slave;
+        ptree master_;
+        ptree slave_;
 
-        default_config();
-        ~default_config() = default;
-        default_config(const default_config&) = delete;
-        default_config& operator=(const default_config&) = delete;
+        DefaultConfig();
+        ~DefaultConfig() = default;
+        DefaultConfig(const DefaultConfig&) = delete;
+        DefaultConfig& operator=(const DefaultConfig&) = delete;
         void make_props();
 
     public:
-        static default_config& get_instance();
+        static DefaultConfig& get_instance();
         const ptree& master();
         const ptree& slave();
     };
 }
 
-#endif //ADFTPD_CONFIG_DEFAULT_CONFIG_H

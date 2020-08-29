@@ -4,13 +4,13 @@
 
 #include "master_reader.h"
 namespace config {
-    bool master_reader::parse() {
-        const ptree& defs = default_config::get_instance().master();
+    bool MasterReader::parse() {
+        const ptree& defs = DefaultConfig::get_instance().master();
 
         return true;
     }
 
-    master_reader::~master_reader() {
+    MasterReader::~MasterReader() {
 
     }
 }

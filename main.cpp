@@ -1,10 +1,11 @@
+#include "config/config_factory.h"
+
 #include <iostream>
-#include <boost/program_options.hpp>
-#include "config/reader.h"
 #include <string>
+#include <boost/program_options.hpp>
 
 struct cli_opts {
-    int mode;
+    config::Mode mode;
     int verbosity;
     bool daemonize;
     bool test;
@@ -13,7 +14,7 @@ struct cli_opts {
     std::string log_file;
 
     cli_opts() {
-        mode = 0;
+        mode = config::Mode::kMaster;
         daemonize = false;
         test = false;
         log_to_file = false;
@@ -51,10 +52,10 @@ int parse_options(int argc, char **argv, cli_opts& co) {
     }
 
     if (vm.count("master")) {
-        co.mode = 0;
+        co.mode = config::Mode::kMaster;
     }
     else if (vm.count("slave")) {
-        co.mode = 1;
+        co.mode = config::Mode::kSlave;
     }
     else {
         std::cout << "Master or slave option must be specified" << std::endl;

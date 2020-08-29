@@ -3,14 +3,15 @@
 //
 
 #include "slave_reader.h"
+
 namespace config {
-    bool slave_reader::parse() {
-        const ptree& defs = default_config::get_instance().slave();
+    bool SlaveReader::parse() {
+        const ptree& defs = DefaultConfig::get_instance().slave();
 
         return true;
     }
 
-    slave_reader::~slave_reader() {
+    SlaveReader::~SlaveReader() {
 
     }
 }
