@@ -39,7 +39,7 @@ find_package(Boost REQUIRED COMPONENTS program_options)
 find_package(absl REQUIRED)
 
 if(Boost_FOUND)
-    add_executable(adftpd main.cpp config/reader.h config/master_reader.cpp config/master_reader.h config/slave_reader.cpp config/slave_reader.h config/default_config.cpp config/default_config.h config/constants.cpp config/constants.h tests/config_reader_test.cpp config/config_factory.cpp config/config_factory.h)
+    add_executable(adftpd main.cpp config/reader.h config/master_reader.cpp config/master_reader.h config/slave_reader.cpp config/slave_reader.h config/default_config.cpp config/default_config.h config/constants.cpp config/constants.h tests/config_reader_test.cpp config/config_factory.cpp config/config_factory.h app/constants.cpp app/constants.h app/cli_option_parser.cpp app/cli_option_parser.h app/logger.h app/console_logger.cpp app/console_logger.h application.cpp application.h app/common.h config/common.h app/file_logger.cpp app/file_logger.h app/file_exception.cpp app/file_exception.h)
     include_directories(${Boost_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR})
     link_directories(${Boost_LIBRARY_DIRS})
     target_link_libraries(adftpd ${Boost_LIBRARIES} gtest_main)
