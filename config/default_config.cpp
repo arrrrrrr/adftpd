@@ -14,10 +14,10 @@ namespace config {
     using namespace boost::property_tree;
 
     DefaultConfig::DefaultConfig() {
-        make_props();
+        ReadDefaults();
     }
 
-    void DefaultConfig::make_props() {
+    void DefaultConfig::ReadDefaults() {
         json_parser::read_json(master_config, master_);
         json_parser::read_json(slave_config, slave_);
     }
@@ -27,11 +27,11 @@ namespace config {
         return instance;
     }
 
-    const ptree& DefaultConfig::master() {
+    const ptree& DefaultConfig::get_master_config() {
         return master_;
     }
 
-    const ptree& DefaultConfig::slave() {
+    const ptree& DefaultConfig::get_slave_config() {
         return slave_;
     }
 }

@@ -5,7 +5,7 @@
 #include "master_reader.h"
 namespace config {
     bool MasterReader::parse() {
-        const ptree& defs = DefaultConfig::get_instance().master();
+        const ptree& defs = DefaultConfig::get_instance().get_master_config();
 
         return true;
     }

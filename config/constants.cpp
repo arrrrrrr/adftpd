@@ -37,7 +37,18 @@ namespace config {
                     "port": 5300
                 },
                 "name": "adftpd"
-            }
+            },
+            "logging": [
+                {
+                    "output": "console",
+                    "enabled": true,
+                },
+                {
+                    "output": "file",
+                    "enabled": true,
+                    "target": "./adftpd.log",
+                }
+            ],
         }
         )";
 
@@ -57,5 +68,16 @@ namespace config {
                     "port": 8910
                 },
             },
+            "logging": [
+                {
+                    "output": "console",
+                    "enabled": true,
+                },
+                {
+                    "output": "file",
+                    "enabled": true,
+                    "target": "./adftpd.log",
+                }
+            ],
         )";
 }

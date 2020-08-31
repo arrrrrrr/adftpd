@@ -5,7 +5,7 @@
 #pragma once
 
 #include <string>
-#include "default_config.h"
+#include "config/default_config.h"
 
 namespace config {
     using namespace boost::property_tree;

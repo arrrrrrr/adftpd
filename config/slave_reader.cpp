@@ -6,7 +6,7 @@
 
 namespace config {
     bool SlaveReader::parse() {
-        const ptree& defs = DefaultConfig::get_instance().slave();
+        const ptree& defs = DefaultConfig::get_instance().get_slave_config();
 
         return true;
     }

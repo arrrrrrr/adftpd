@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "constants.h"
+#include "config/constants.h"
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
@@ -21,12 +21,12 @@ namespace config {
         ~DefaultConfig() = default;
         DefaultConfig(const DefaultConfig&) = delete;
         DefaultConfig& operator=(const DefaultConfig&) = delete;
-        void make_props();
+        void ReadDefaults();
 
     public:
         static DefaultConfig& get_instance();
-        const ptree& master();
-        const ptree& slave();
+        const ptree& get_master_config();
+        const ptree& get_slave_config();
     };
 }
 

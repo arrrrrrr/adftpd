@@ -6,16 +6,17 @@
 
 namespace config {
 
-    ConfigException::ConfigException(std::string msg) :
-        msg_(msg)
+    ConfigException::ConfigException(const char *message) :
+        message_(message)
     {
     }
 
     const char *ConfigException::what() const {
-        return msg_.c_str();
+        return message_;
     }
 
-    ConfigFactory::ConfigFactory(config::Mode mode) : mode_(mode)
+    ConfigFactory::ConfigFactory(config::Mode mode) :
+        mode_(mode)
     {
     }
 

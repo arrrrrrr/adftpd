@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "reader.h"
+#include "config/reader.h"
 
 namespace config {
     class MasterReader : public Reader {

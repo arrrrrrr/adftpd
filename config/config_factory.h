@@ -3,18 +3,18 @@
 //
 
 #pragma once
-#include "constants.h"
-#include "master_reader.h"
-#include "slave_reader.h"
+#include "config/constants.h"
+#include "config/master_reader.h"
+#include "config/slave_reader.h"
 
 #include <exception>
 
 namespace config {
-    class ConfigException : std::exception {
+    class ConfigException : public std::exception {
     private:
-        std::string msg_;
+        const char *message_;
     public:
-        ConfigException(std::string msg);
+        ConfigException(const char *message);
         const char * what() const override;
     };
 
