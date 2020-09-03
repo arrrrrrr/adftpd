@@ -4,11 +4,23 @@
 
 #include "application.h"
 
-Application::Application(int argc, char **argv) :
-    cli_options_(argc, argv)
+Application::Application()
 {
 }
 
-Application::~Application() {
+Application::~Application()
+{
+}
 
+int Application::Run(int argc, char **argv) {
+    using namespace app;
+
+    try {
+        CliOptionParser cli_options(argc, argv);
+    } catch (CliOptionException& e) {
+        std::cout << e.what() << std::endl;
+        return 1;
+    }
+
+    return 0;
 }
