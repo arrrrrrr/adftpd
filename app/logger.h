@@ -8,11 +8,8 @@
 namespace app {
     class Logger {
     public:
+        Logger() = default;
+        virtual ~Logger() {};
         virtual void log(std::string line) = 0;
-        virtual ~Logger();
     };
 }
-
-
-
-

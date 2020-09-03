@@ -4,12 +4,9 @@
 
 #include "console_logger.h"
 
-app::ConsoleLogger::ConsoleLogger() {
+app::ConsoleLogger::~ConsoleLogger() {
 }
 
 void app::ConsoleLogger::log(std::string line) {
     std::cout << line << std::endl;
-}
-
-app::ConsoleLogger::~ConsoleLogger() {
 }

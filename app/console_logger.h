@@ -10,11 +10,8 @@
 namespace app {
     class ConsoleLogger : public Logger {
     public:
-        ConsoleLogger();
-        virtual void log(std::string line) override;
+        ConsoleLogger() = default;
         virtual ~ConsoleLogger();
+        virtual void log(std::string line) override;
     };
 }
-
-
-
