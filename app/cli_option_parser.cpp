@@ -22,18 +22,16 @@ void app::CliOptionParser::ParseOptions(int argc, char **argv) {
     /**
      * Setup argument parsing using boost
      */
-    po::options_description desc("Options:");
+    po::options_description desc("Options");
     desc.add_options()
-            ("help", "Option help")
-            ("master", "Run the server in master mode. Only one get_master_config can run")
-            ("slave", "Run the server in slave mode. Many slaves can run")
-            ("daemonize", po::value<bool>(&(test_))->default_value(false),
-             "Run in daemon mode")
-            ("test", po::value<bool>(&(test_))->default_value(false),
-             "Test the configuration file")
-            ("config", po::value<std::string>(&(config_file_))->default_value("./config.json"),
+            ("help,h", "Option help")
+            ("master,m", "Run the server in master mode. Only one master can run")
+            ("slave,s", "Run the server in slave mode. Many slaves can run")
+            ("daemonize,d", "Run in daemon mode")
+            ("test,t", "Test the configuration file")
+            ("config,c", po::value<std::string>(&(config_file_))->default_value("./config.json"),
              "Path to the config file [Default: ./config.json]")
-            ("verbose", po::value<int>(&(verbosity_))->default_value(0),
+            ("verbosity,v", po::value<int>(&(verbosity_))->default_value(0),
              "Logging verbosity");
 
     po::variables_map vm;
@@ -42,7 +40,7 @@ void app::CliOptionParser::ParseOptions(int argc, char **argv) {
 
     if (vm.count("help")) {
         std::cout << desc << std::endl;
-        throw CliOptionException("help");
+        throw CliOptionException("");
     }
 
     if (vm.count("master")) {
@@ -61,8 +59,8 @@ void app::CliOptionParser::ParseOptions(int argc, char **argv) {
         test_ = true;
     }
 
-    if (vm.count("verbose")) {
-        int tmp_verbosity = vm["verbose"].as<int>();
+    if (vm.count("verbosity")) {
+        int tmp_verbosity = vm["verbosity"].as<int>();
         if (tmp_verbosity >= 0 && tmp_verbosity <= 2) {
             verbosity_ = tmp_verbosity;
         } else {
@@ -74,6 +72,7 @@ void app::CliOptionParser::ParseOptions(int argc, char **argv) {
 app::CliOptionParser::CliOptionParser(int argc, char **argv) :
     mode_(config::kMaster), daemonize_(false), test_(false)
 {
+    ParseOptions(argc, argv);
 }
 
 config::Mode app::CliOptionParser::get_mode() const {
