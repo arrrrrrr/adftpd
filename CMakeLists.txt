@@ -38,11 +38,22 @@ set(absl_DIR  "${CMAKE_CURRENT_SOURCE_DIR}/../vcpkg/installed/x64-windows/share/
 find_package(Boost REQUIRED COMPONENTS program_options)
 find_package(absl REQUIRED)
 
+set(GTEST_INCLUDE_DIRS "${CMAKE_CURRENT_BINARY_DIR}/googletest-src/googletest/include")
+
+file(GLOB_RECURSE TEST_SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "tests/*.cpp")
+file(GLOB_RECURSE APP_SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "app/*.cpp" "app/*.h")
+file(GLOB_RECURSE CONFIG_SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "config/*.cpp" "config/*.h")
+file(GLOB_RECURSE NET_SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "net/*.cpp" "net/*.h")
+
 if(Boost_FOUND)
-    add_executable(adftpd main.cpp config/reader.h config/master_reader.cpp config/master_reader.h config/slave_reader.cpp config/slave_reader.h config/default_config.cpp config/default_config.h config/constants.cpp config/constants.h tests/config_reader_test.cpp config/config_factory.cpp config/config_factory.h app/constants.cpp app/constants.h app/cli_option_parser.cpp app/cli_option_parser.h app/logger.h app/console_logger.cpp app/console_logger.h application.cpp application.h app/common.h config/common.h app/file_logger.cpp app/file_logger.h app/file_exception.cpp app/file_exception.h)
-    include_directories(${Boost_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR})
+    add_executable(adftpd main.cpp application.cpp ${CONFIG_SOURCES} ${APP_SOURCES} ${NET_SOURCES})
+    add_executable(adftpd_test ${TEST_SOURCES} ${CONFIG_SOURCES} ${APP_SOURCES} ${NET_SOURCES})
+    #add_executable(adftpd_test ${TEST_SOURCES} config/reader.h config/master_reader.cpp config/master_reader.h config/slave_reader.cpp config/slave_reader.h config/default_config.cpp config/default_config.h config/constants.cpp config/constants.h tests/cli_options.cpp config/config_factory.cpp config/config_factory.h app/constants.cpp app/constants.h app/cli_option_parser.cpp app/cli_option_parser.h app/logger.h app/console_logger.cpp app/console_logger.h application.cpp application.h app/common.h config/common.h app/file_logger.cpp app/file_logger.h app/file_exception.cpp app/file_exception.h)
+    #add_executable(adftpd main.cpp config/reader.h config/master_reader.cpp config/master_reader.h config/slave_reader.cpp config/slave_reader.h config/default_config.cpp config/default_config.h config/constants.cpp config/constants.h config/config_factory.cpp config/config_factory.h app/constants.cpp app/constants.h app/cli_option_parser.cpp app/cli_option_parser.h app/logger.h app/console_logger.cpp app/console_logger.h application.cpp application.h app/common.h config/common.h app/file_logger.cpp app/file_logger.h app/file_exception.cpp app/file_exception.h)
+    include_directories(${Boost_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR} ${GTEST_INCLUDE_DIRS})
     link_directories(${Boost_LIBRARY_DIRS})
-    target_link_libraries(adftpd ${Boost_LIBRARIES} gtest_main)
+    target_link_libraries(adftpd ${Boost_LIBRARIES})
+    target_link_libraries(adftpd_test ${Boost_LIBRARIES} gtest_main)
 endif()
 
 
