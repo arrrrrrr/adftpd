@@ -5,7 +5,6 @@
 #include "config_factory.h"
 
 namespace config {
-
     ConfigException::ConfigException(const char *message) :
         message_(message)
     {
