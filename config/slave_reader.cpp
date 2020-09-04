@@ -5,13 +5,12 @@
 #include "slave_reader.h"
 
 namespace config {
-    bool SlaveReader::parse() {
-        const ptree& defs = DefaultConfig::get_instance().get_slave_config();
+    ptree& SlaveReader::parse() {
+        ptree default_props, user_props;
+        json_parser::read_json(config::slave_config, default_props);
+        json_parser::read_json(config_, user_props);
 
-        return true;
-    }
-
-    SlaveReader::~SlaveReader() {
-
+        MergePropertyTrees(default_props, user_props);
+        return props_;
     }
 }

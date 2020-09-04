@@ -8,10 +8,10 @@
 
 namespace config {
     class SlaveReader : public Reader {
-    public:
-        SlaveReader(std::string file) : Reader(file) {}
+    private:
 
-        bool parse() override;
-        ~SlaveReader() override;
+    public:
+        SlaveReader(const char *config) : Reader(config) {}
+        ptree& parse() override;
     };
 }

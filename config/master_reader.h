@@ -8,10 +8,10 @@
 
 namespace config {
     class MasterReader : public Reader {
-    public:
-        MasterReader(std::string file) : Reader(file) {}
-        bool parse() override;
+    private:
 
-        ~MasterReader() override;
+    public:
+        MasterReader(const char *config) : Reader(config) {}
+        ptree& parse() override;
     };
 }

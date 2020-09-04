@@ -3,14 +3,14 @@
 //
 
 #include "master_reader.h"
+
 namespace config {
-    bool MasterReader::parse() {
-        const ptree& defs = DefaultConfig::get_instance().get_master_config();
+    ptree& MasterReader::parse() {
+        ptree default_props, user_props;
+        json_parser::read_json(config::master_config, default_props);
+        json_parser::read_json(config_, user_props);
 
-        return true;
-    }
-
-    MasterReader::~MasterReader() {
-
+        MergePropertyTrees(default_props, user_props);
+        return props_;
     }
 }

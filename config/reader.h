@@ -4,25 +4,26 @@
 
 #pragma once
 
+#include "config/constants.h"
+#include "config/config_exception.h"
+
 #include <string>
-#include "config/default_config.h"
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
 
 namespace config {
     using namespace boost::property_tree;
 
     class Reader {
     protected:
-        std::string m_file;
-        ptree m_props;
+        const char *config_;
+        ptree props_;
+
+        void MergePropertyTrees(ptree& default_props, ptree& user_props);
 
     public:
-        Reader(std::string file) : m_file(file) {}
-        virtual bool parse() = 0;
-
-        ptree& get_properties() {
-            return m_props;
-        }
-
-        virtual ~Reader() {}
+        Reader(const char *config);
+        ~Reader();
+        virtual ptree& parse() = 0;
     };
 }

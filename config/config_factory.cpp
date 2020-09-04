@@ -5,26 +5,17 @@
 #include "config_factory.h"
 
 namespace config {
-    ConfigException::ConfigException(const char *message) :
-        message_(message)
-    {
-    }
-
-    const char *ConfigException::what() const {
-        return message_;
-    }
-
     ConfigFactory::ConfigFactory(config::Mode mode) :
-        mode_(mode)
+            mode_(mode)
     {
     }
 
-    Reader *ConfigFactory::MakeReader(std::string config_file) {
+    Reader *ConfigFactory::MakeReader(const char *json_config) {
         switch (mode_) {
             case config::Mode::kMaster:
-                return new config::MasterReader(config_file);
+                return new config::MasterReader(json_config);
             case config::Mode::kSlave:
-                return new config::SlaveReader(config_file);
+                return new config::SlaveReader(json_config);
             default:
                 throw ConfigException("Invalid mode");
         }
