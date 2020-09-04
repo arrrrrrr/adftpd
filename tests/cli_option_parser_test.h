@@ -1,9 +1,10 @@
 //
-// Created by mikey on 29/08/2020.
+// Created by mikey on 4/09/2020.
 //
 
+#pragma once
+
 #include "gtest/gtest.h"
-#include "config/common.h"
 #include "app/common.h"
 
 namespace {
@@ -63,4 +64,3 @@ namespace {
         EXPECT_THROW(app::CliOptionParser parser(argc, static_cast<char **>(argv)), app::CliOptionException);
     }
 }
-
