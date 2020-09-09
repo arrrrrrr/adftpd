@@ -5,12 +5,11 @@
 #include "constants.h"
 
 namespace config {
-    const char *master_config =
-            u8R"(
+    const char *master_config = u8R"(
         {
             "info": {
                 "name": "My adftpd server",
-                "welcome_msg": "Welcome",
+                "welcome_msg": "Welcome"
             },
             "core": {
                 "bind": {
@@ -26,10 +25,10 @@ namespace config {
                     "ipv4": "0.0.0.0",
                     "ipv6": "::",
                     "port_range": [
-                        "48000-50000",
+                        "48000-50000"
                     ]
                 },
-                "max_connections": 30,
+                "max_connections": 30
             },
             "database": {
                 "server": {
@@ -41,19 +40,19 @@ namespace config {
             "logging": [
                 {
                     "output": "console",
-                    "enabled": true,
+                    "enabled": true
                 },
                 {
                     "output": "file",
                     "enabled": true,
-                    "target": "./adftpd.log",
+                    "target": "./adftpd.log"
                 }
-            ],
-        }
-        )";
+            ]
+        })";
 
     const char *slave_config =
             u8R"(
+        {
             "info": {
                 "name": "slave1"
             },
@@ -66,18 +65,19 @@ namespace config {
                         "*"
                     ],
                     "port": 8910
-                },
+                }
             },
             "logging": [
                 {
                     "output": "console",
-                    "enabled": true,
+                    "enabled": true
                 },
                 {
                     "output": "file",
                     "enabled": true,
-                    "target": "./adftpd.log",
+                    "target": "./adftpd.log"
                 }
-            ],
+            ]
+        }
         )";
 }
