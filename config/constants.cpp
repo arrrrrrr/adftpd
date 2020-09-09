@@ -50,8 +50,7 @@ namespace config {
             ]
         })";
 
-    const char *slave_config =
-            u8R"(
+    const char *slave_config = u8R"(
         {
             "info": {
                 "name": "slave1"
@@ -69,13 +68,12 @@ namespace config {
             },
             "logging": [
                 {
-                    "output": "console",
+                    "output": "stdout",
                     "enabled": true
                 },
                 {
-                    "output": "file",
-                    "enabled": true,
-                    "target": "./adftpd.log"
+                    "output": "./adftpd.log",
+                    "enabled": true
                 }
             ]
         }
