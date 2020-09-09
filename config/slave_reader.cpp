@@ -5,12 +5,19 @@
 #include "slave_reader.h"
 
 namespace config {
-    ptree& SlaveReader::parse() {
-        ptree default_props, user_props;
-        json_parser::read_json(config::slave_config, default_props);
-        json_parser::read_json(config_, user_props);
+    ptree& SlaveReader::Parse(std::string file) {
+        namespace bp = boost::property_tree;
 
-        MergePropertyTrees(default_props, user_props);
+        ptree user_props;
+
+        try {
+            ReadJsonFile(file, user_props);
+            ReadJsonFromCharBuffer(config::slave_config, std::strlen(config::master_config), props_);
+        }
+        catch (bp::json_parser_error &e) {
+            throw ConfigException(e.message().c_str());
+        }
+
         return props_;
     }
 }

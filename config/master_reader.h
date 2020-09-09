@@ -11,7 +11,7 @@ namespace config {
     private:
 
     public:
-        MasterReader(const char *config) : Reader(config) {}
-        ptree& parse() override;
+        MasterReader() : Reader() {}
+        ptree& Parse(std::string file) override;
     };
 }

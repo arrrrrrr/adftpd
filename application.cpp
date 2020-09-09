@@ -14,9 +14,11 @@ Application::~Application()
 
 int Application::Run(int argc, char **argv) {
     using namespace app;
+    using namespace config;
 
     try {
         CliOptionParser cli_options(argc, argv);
+
     } catch (CliOptionException& e) {
         std::cout << e.what() << std::endl;
         return 1;

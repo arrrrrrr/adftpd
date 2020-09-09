@@ -11,7 +11,7 @@ namespace config {
     private:
 
     public:
-        SlaveReader(const char *config) : Reader(config) {}
-        ptree& parse() override;
+        SlaveReader() : Reader() {}
+        ptree& Parse(std::string file) override;
     };
 }

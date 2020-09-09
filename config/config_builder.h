@@ -11,12 +11,14 @@ namespace config {
     class ConfigBuilder {
     protected:
         Reader *config_reader_;
+        std::string config_file_;
 
     public:
         ConfigBuilder();
         ~ConfigBuilder();
 
-        void set_reader(Reader *config_reader);
+        ConfigBuilder& set_reader(Reader *config_reader);
+        ConfigBuilder& set_config(std::string& file);
         ptree build();
     };
 }

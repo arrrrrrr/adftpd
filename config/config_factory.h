@@ -11,7 +11,7 @@ namespace config {
         config::Mode mode_;
     public:
         ConfigFactory(config::Mode mode);
-        Reader *MakeReader(const char *json_config);
+        Reader *MakeReader();
     };
 }
 

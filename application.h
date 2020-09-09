@@ -4,6 +4,7 @@
 
 #pragma once
 #include "app/common.h"
+#include "config/common.h"
 
 class Application {
 private:

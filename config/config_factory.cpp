@@ -10,12 +10,12 @@ namespace config {
     {
     }
 
-    Reader *ConfigFactory::MakeReader(const char *json_config) {
+    Reader *ConfigFactory::MakeReader() {
         switch (mode_) {
             case config::Mode::kMaster:
-                return new config::MasterReader(json_config);
+                return new config::MasterReader();
             case config::Mode::kSlave:
-                return new config::SlaveReader(json_config);
+                return new config::SlaveReader();
             default:
                 throw ConfigException("Invalid mode");
         }

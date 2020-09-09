@@ -8,6 +8,8 @@
 #include "config/config_exception.h"
 
 #include <string>
+#include <boost/iostreams/stream.hpp>
+#include <boost/iostreams/device/array.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 
@@ -16,14 +18,13 @@ namespace config {
 
     class Reader {
     protected:
-        const char *config_;
         ptree props_;
 
-        void MergePropertyTrees(ptree& default_props, ptree& user_props);
-
+        void ReadJsonFile(std::string file, ptree& out_props);
+        void ReadJsonFromCharBuffer(const char *buffer, int length, ptree& out_props);
     public:
-        Reader(const char *config);
+        Reader();
         ~Reader();
-        virtual ptree& parse() = 0;
+        virtual ptree& Parse(std::string file) = 0;
     };
 }

@@ -4,18 +4,27 @@
 
 #include "config/config_builder.h"
 
-config::ConfigBuilder::ConfigBuilder() {
+namespace config {
+    ConfigBuilder::ConfigBuilder() :
+        config_file_(""), config_reader_(nullptr)
+    {
+    }
 
-}
+    ConfigBuilder::~ConfigBuilder() {
 
-config::ConfigBuilder::~ConfigBuilder() {
+    }
 
-}
+    ConfigBuilder& ConfigBuilder::set_reader(Reader *config_reader) {
+        config_reader_ = config_reader;
+        return *this;
+    }
 
-void config::ConfigBuilder::set_reader(config::Reader *config_reader) {
-    config_reader_ = config_reader;
-}
+    ConfigBuilder& ConfigBuilder::set_config(std::string& file) {
+        config_file_ = file;
+        return *this;
+    }
 
-boost::property_tree::ptree config::ConfigBuilder::build() {
-    return config_reader_->parse();
+    boost::property_tree::ptree ConfigBuilder::build() {
+        return config_reader_->Parse(config_file_);
+    }
 }

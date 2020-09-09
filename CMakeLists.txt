@@ -52,7 +52,7 @@ if(Boost_FOUND)
                    app/cli_option_parser.cpp app/cli_option_parser.h app/common.h app/console_logger.cpp app/console_logger.h
                    app/constants.cpp app/constants.h app/file_exception.cpp app/file_exception.h app/file_logger.cpp app/file_logger.h app/logger.h)
     add_executable(adftpd_test tests/tests.cpp tests/cli_option_parser_test.h tests/logger_test.h
-                   ${CONFIG_SOURCES} ${APP_SOURCES} ${NET_SOURCES})
+                   ${CONFIG_SOURCES} ${APP_SOURCES} ${NET_SOURCES} tests/config_reader_test.h)
     include_directories(${Boost_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR} ${GTEST_INCLUDE_DIRS})
     link_directories(${Boost_LIBRARY_DIRS})
     target_link_libraries(adftpd ${Boost_LIBRARIES})
