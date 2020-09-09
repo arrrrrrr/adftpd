@@ -50,7 +50,7 @@ if(Boost_FOUND)
                    config/config_exception.cpp config/config_exception.h config/master_reader.cpp config/master_reader.h
                    config/reader.cpp config/reader.h config/slave_reader.cpp config/slave_reader.h
                    app/cli_option_parser.cpp app/cli_option_parser.h app/common.h app/console_logger.cpp app/console_logger.h
-                   app/constants.cpp app/constants.h app/file_exception.cpp app/file_exception.h app/file_logger.cpp app/file_logger.h app/logger.h)
+                   app/constants.cpp app/constants.h app/file_exception.cpp app/file_exception.h app/file_logger.cpp app/file_logger.h app/logger.h utils/json.h utils/common.h)
     add_executable(adftpd_test tests/tests.cpp tests/cli_option_parser_test.h tests/logger_test.h
                    ${CONFIG_SOURCES} ${APP_SOURCES} ${NET_SOURCES} tests/config_reader_test.h)
     include_directories(${Boost_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR} ${GTEST_INCLUDE_DIRS})
